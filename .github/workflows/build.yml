@@ -1,7 +1,5 @@
-//Name of the workflow
 name: Java CI
 
-//Workflow triggers when this happens
 on: [pull_request, push]
 
 jobs:
