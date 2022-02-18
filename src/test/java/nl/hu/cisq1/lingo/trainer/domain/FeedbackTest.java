@@ -23,4 +23,18 @@ class FeedbackTest {
         Feedback feedback = new Feedback("woord", List.of(Mark.CORRECT, Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT));
         assertFalse(feedback.isWordGuessed());
     }
+
+    @DisplayName("Word is invalid if there are more letters than specified")
+    @Test
+    void wordIsInvalid(){
+        Feedback feedback = new Feedback("woord", List.of(Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID));
+        assertTrue(feedback.isWordInvalid());
+    }
+
+    @DisplayName("Word is not invalid if there are as much letters as specified")
+    @Test
+    void wordIsNotInvalid(){
+        Feedback feedback = new Feedback("woord", List.of(Mark.CORRECT, Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT));
+        assertFalse(feedback.isWordInvalid());
+    }
 }
