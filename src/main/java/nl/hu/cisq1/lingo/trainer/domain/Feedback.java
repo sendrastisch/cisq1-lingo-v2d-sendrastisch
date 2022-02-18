@@ -1,6 +1,8 @@
 package nl.hu.cisq1.lingo.trainer.domain;
 
 import nl.hu.cisq1.lingo.Mark.Mark;
+import nl.hu.cisq1.lingo.trainer.domain.exception.InvalidFeedbackException;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +13,10 @@ public class Feedback {
     public Feedback(String atmt, List<Mark> mrs ){
         attempt = atmt;
         marks = mrs;
+
+        if(atmt.length() != mrs.size()){
+            throw new InvalidFeedbackException();
+        }
     }
 
     public boolean isWordGuessed(){
