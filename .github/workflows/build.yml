@@ -3,10 +3,10 @@ name: Java CI
 on:
   pull_request:
     branches:
-      - '$default-branch'
+      - $default-branch
   push:
     branches:
-      - '$default-branch'
+      - $default-branch
 
 jobs:
   build:
