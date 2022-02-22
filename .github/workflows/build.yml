@@ -3,14 +3,14 @@ name: Java CI
 on:
   pull_request:
     branches:
-      - 'main'
+      - '$default-branch'
   push:
     branches:
-      - 'main'
+      - '$default-branch'
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
