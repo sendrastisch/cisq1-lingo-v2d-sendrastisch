@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.words.domain;
+package nl.hu.cisq1.lingo.Words.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

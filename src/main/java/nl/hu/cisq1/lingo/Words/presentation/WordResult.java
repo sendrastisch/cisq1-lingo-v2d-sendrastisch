@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.words.presentation;
+package nl.hu.cisq1.lingo.Words.presentation;
 
 public class WordResult {
     private String word;

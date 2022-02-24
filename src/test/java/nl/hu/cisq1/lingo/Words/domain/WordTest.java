@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.words.domain;
+package nl.hu.cisq1.lingo.Words.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

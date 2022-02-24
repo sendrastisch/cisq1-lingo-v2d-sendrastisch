@@ -1,6 +1,6 @@
-package nl.hu.cisq1.lingo.words.data;
+package nl.hu.cisq1.lingo.Words.data;
 
-import nl.hu.cisq1.lingo.words.domain.Word;
+import nl.hu.cisq1.lingo.Words.domain.Word;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

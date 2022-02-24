@@ -1,8 +1,8 @@
-package nl.hu.cisq1.lingo.words.application;
+package nl.hu.cisq1.lingo.Words.application;
 
-import nl.hu.cisq1.lingo.words.data.WordRepository;
-import nl.hu.cisq1.lingo.words.domain.Word;
-import nl.hu.cisq1.lingo.words.domain.exception.WordLengthNotSupportedException;
+import nl.hu.cisq1.lingo.Words.data.WordRepository;
+import nl.hu.cisq1.lingo.Words.domain.Word;
+import nl.hu.cisq1.lingo.Words.domain.exception.WordLengthNotSupportedException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

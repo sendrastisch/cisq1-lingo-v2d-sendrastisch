@@ -1,7 +1,7 @@
-package nl.hu.cisq1.lingo.words.presentation;
+package nl.hu.cisq1.lingo.Words.presentation;
 
-import nl.hu.cisq1.lingo.words.data.WordRepository;
-import nl.hu.cisq1.lingo.words.domain.Word;
+import nl.hu.cisq1.lingo.Words.data.WordRepository;
+import nl.hu.cisq1.lingo.Words.domain.Word;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

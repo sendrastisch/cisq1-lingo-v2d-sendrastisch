@@ -1,7 +1,8 @@
-package nl.hu.cisq1.lingo.trainer.domain;
+package nl.hu.cisq1.lingo.Feedback.domain;
 
+import nl.hu.cisq1.lingo.Hint.domain.Hint;
 import nl.hu.cisq1.lingo.Mark.Mark;
-import nl.hu.cisq1.lingo.trainer.domain.exception.InvalidFeedbackException;
+import nl.hu.cisq1.lingo.Feedback.domain.exception.InvalidFeedbackException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +47,16 @@ class FeedbackTest {
                 InvalidFeedbackException.class,
                 () -> new Feedback("woord", List.of(Mark.CORRECT, Mark.ABSENT))
         );
+    }
+
+    @DisplayName("Will give correct hint depending on previous hint, wordToGuess and marks")
+    @Test
+    void feedbackIsCorrect(){
+
+        Hint previousHint = new Hint("....y");
+        Feedback feedback = new Feedback("petty", List.of(Mark.CORRECT, Mark.ABSENT, Mark.ABSENT, Mark.CORRECT, Mark.CORRECT));
+
+        assertEquals("p..ty", feedback.giveHint(previousHint).toString());
+
     }
 }
