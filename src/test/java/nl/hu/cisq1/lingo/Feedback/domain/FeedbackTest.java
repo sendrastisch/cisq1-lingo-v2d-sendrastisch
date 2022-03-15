@@ -55,23 +55,23 @@ class FeedbackTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("provideInputForFeedbackIsCorrect")
-    @DisplayName("Will give correct hint depending on previous hint and marks")
-    void feedbackIsCorrect(Hint previousHint, Feedback feedback, String expectedHint){
-
-        assertEquals(expectedHint, feedback.giveHint(previousHint).toString());
-
-    }
-
-    public static Stream<Arguments> provideInputForFeedbackIsCorrect(){
-        return Stream.of(
-           Arguments.of(new Hint("r...e"), new Feedback("ruche", List.of(Mark.CORRECT, Mark.CORRECT, Mark.ABSENT, Mark.ABSENT, Mark.CORRECT)), "ru..e"),
-           Arguments.of(new Hint("wo..."), new Feedback("works", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.ABSENT, Mark.CORRECT)), "wor.s"),
-           Arguments.of(new Hint(".ov.."), new Feedback("rover", List.of(Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT)), ".over"),
-           Arguments.of(new Hint("p..e."), new Feedback("price", List.of(Mark.CORRECT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT, Mark.PRESENT)),"p..e.")
-        );
-    }
+//    @ParameterizedTest
+//    @MethodSource("provideInputForFeedbackIsCorrect")
+//    @DisplayName("Will give correct hint depending on previous hint and marks")
+//    void feedbackIsCorrect(Hint previousHint, Feedback feedback, String expectedHint){
+//
+//        assertEquals(expectedHint, feedback.giveHint(previousHint).toString());
+//
+//    }
+//
+//    public static Stream<Arguments> provideInputForFeedbackIsCorrect(){
+//        return Stream.of(
+//           Arguments.of(new Hint("r...e"), new Feedback("ruche", List.of(Mark.CORRECT, Mark.CORRECT, Mark.ABSENT, Mark.ABSENT, Mark.CORRECT)), "ru..e"),
+//           Arguments.of(new Hint("wo..."), new Feedback("works", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.ABSENT, Mark.CORRECT)), "wor.s"),
+//           Arguments.of(new Hint(".ov.."), new Feedback("rover", List.of(Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT)), ".over"),
+//           Arguments.of(new Hint("p..e."), new Feedback("price", List.of(Mark.CORRECT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT, Mark.PRESENT)),"p..e.")
+//        );
+//    }
 
     @DisplayName("Will give list of correct marks if word is guessed")
     @Test

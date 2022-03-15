@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 public class Feedback {
     private String attempt;
     private List<Mark> marks;
-    private Hint hint;
 
     public Feedback(String atmt, List<Mark> mrs ){
         attempt = atmt;
@@ -22,6 +21,10 @@ public class Feedback {
         if(atmt.length() != mrs.size()){
             throw new InvalidFeedbackException();
         }
+    }
+
+    public String getAttempt() {
+        return attempt;
     }
 
     public Feedback(String atmt){
@@ -61,38 +64,6 @@ public class Feedback {
             }
         }
         return invalid;
-    }
-
-    public Hint giveHint(Hint previousHint){
-
-        int indexMark = -1;
-        //This is where I create the hint String
-        StringBuilder hintPuzzle = new StringBuilder();
-
-        //This is the string of the last hint
-        String lastHintString = previousHint.getHint();
-
-        //This is the list of chars of the previous hint.
-        char[] splitHint = lastHintString.toCharArray();
-
-        //Loop through list of marks and check whether its correct. If its not correct, it'll add a dot to the hint.
-        for(Mark m: marks){
-            indexMark +=1;
-            if(m == Mark.CORRECT){
-                char a = attempt.charAt(indexMark);
-                hintPuzzle.append(a);
-            } else{
-                hintPuzzle.append(".");
-            }
-        }
-
-        //This loop will combine the hints given from the guess with the previous hint.
-        for(int i = 0; i < splitHint.length; i++){
-            if(splitHint[i] != '.'){
-                hintPuzzle.replace(i, i+1 , String.valueOf(splitHint[i]));
-            }
-        }
-        return new Hint(String.valueOf(hintPuzzle));
     }
 
     //This function creates a list of marks for a word
@@ -137,6 +108,10 @@ public class Feedback {
             }
         }
         this.setMarks(list);
+    }
+
+    public Hint generateHint(Hint previousHint, String attempt){
+        return new Hint(previousHint, marks, attempt);
     }
 
     @Override
