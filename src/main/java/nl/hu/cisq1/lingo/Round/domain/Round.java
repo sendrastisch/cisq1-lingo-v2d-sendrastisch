@@ -4,7 +4,7 @@ import nl.hu.cisq1.lingo.Feedback.domain.Feedback;
 import nl.hu.cisq1.lingo.Round.exception.RoundWonException;
 import nl.hu.cisq1.lingo.Hint.domain.Hint;
 import nl.hu.cisq1.lingo.Round.exception.RoundLostException;
-import nl.hu.cisq1.lingo.RoundState.RoundState;
+import nl.hu.cisq1.lingo.Round.RoundState.RoundState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,6 @@ public class Round {
     public Round(String wrToGs){
         wordToGuess = wrToGs;
         hint = new Hint(wordToGuess);
-        System.out.println(hint);
     }
 
     public RoundState getState() {
@@ -36,7 +35,6 @@ public class Round {
             feedback.createListMarks(this.wordToGuess);
             feedbackList.add(feedback);
             hint = feedback.generateHint(hint, guess);
-            System.out.println(hint);
         }
     }
 

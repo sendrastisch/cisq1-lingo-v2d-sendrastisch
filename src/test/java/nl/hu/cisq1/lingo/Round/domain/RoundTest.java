@@ -1,6 +1,6 @@
 package nl.hu.cisq1.lingo.Round.domain;
 
-import nl.hu.cisq1.lingo.RoundState.RoundState;
+import nl.hu.cisq1.lingo.Round.RoundState.RoundState;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ class RoundTest {
         round.takeGuess("lunch");
         round.takeGuess("juicy");
         round.takeGuess("start");
-        round.takeGuess("swift");
+        round.takeGuess("blood");
         round.takeGuess("swikt");
 
         assertEquals(RoundState.LOST, round.getState());
