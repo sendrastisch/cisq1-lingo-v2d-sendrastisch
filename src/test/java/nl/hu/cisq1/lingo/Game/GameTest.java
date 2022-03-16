@@ -62,5 +62,55 @@ class GameTest {
         assertEquals(45, game.getScore());
     }
 
+    @DisplayName("Will pass if the word length is changed accordingly after one round")
+    @Test
+    void testWordLengthMethod(){
+        Game game = new Game();
+
+        game.startNewRound("sunny");
+        game.takeGuess("sunny");
+
+        assertEquals(6, game.getLengthWord());
+    }
+
+    @DisplayName("Will pass if the word length is changed accordingly after two rounds")
+    @Test
+    void testWordLengthMethodAfterTwoRounds(){
+        Game game = new Game();
+
+        game.startNewRound("sunny");
+        game.takeGuess("sunny");
+
+        game.startNewRound("story");
+        game.takeGuess("story");
+
+        assertEquals(7, game.getLengthWord());
+    }
+
+    @DisplayName("Will pass if the word length is changed accordingly after three rounds (should be 5 again after 7")
+    @Test
+    void testWordLengthMethodAfterThreeRounds(){
+        Game game = new Game();
+
+        game.startNewRound("sunny");
+        game.takeGuess("sunny");
+
+        game.startNewRound("story");
+        game.takeGuess("story");
+
+        game.startNewRound("swirl");
+        game.takeGuess("swirl");
+
+        assertEquals(5, game.getLengthWord());
+    }
+
+    @DisplayName("Will pass if the word length is changed back to 5 after losing a game")
+    @Test
+    void testWordLengthMethodAfterLosing(){
+
+    }
+
+
+
 
 }

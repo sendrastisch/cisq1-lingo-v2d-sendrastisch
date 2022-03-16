@@ -23,6 +23,14 @@ public class Game {
         return score;
     }
 
+    public void setLengthWord(int lengthWord) {
+        this.lengthWord = lengthWord;
+    }
+
+    public int getLengthWord() {
+        return lengthWord;
+    }
+
     public void startNewRound(String wordToGuess){
 
         if(rounds.size() != 0 && rounds.get(rounds.size()-1).getState() != RoundState.WON ){
@@ -51,12 +59,19 @@ public class Game {
         }
     }
 
-    private void changeWordLength(){
+    public void changeWordLength(){
         switch (lengthWord) {
-            case 5 : lengthWord = 6;
-            case 6 : lengthWord = 7;
-            case 7 : lengthWord = 5;
-            default : lengthWord = 5;
+            case 5:
+                setLengthWord(6);
+                break;
+            case 6:
+                setLengthWord(7);
+                break;
+            case 7:
+                setLengthWord(5);
+                break;
+            default :
+                lengthWord = 5;
         }
     }
 }
