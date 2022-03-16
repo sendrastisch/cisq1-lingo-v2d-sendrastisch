@@ -19,6 +19,10 @@ public class Game {
 
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void startNewRound(String wordToGuess){
 
         if(rounds.size() != 0 && rounds.get(rounds.size()-1).getState() != RoundState.WON ){
