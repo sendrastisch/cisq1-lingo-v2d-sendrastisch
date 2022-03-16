@@ -1,6 +1,7 @@
 package nl.hu.cisq1.lingo.Game;
 
 import nl.hu.cisq1.lingo.Game.exception.RoundCannotBeStartedException;
+import nl.hu.cisq1.lingo.Game.exception.RoundIsNotPlaying;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -107,7 +108,19 @@ class GameTest {
     @DisplayName("Will pass if the word length is changed back to 5 after losing a game")
     @Test
     void testWordLengthMethodAfterLosing(){
+        Game game = new Game();
 
+        game.startNewRound("sunny");
+        game.takeGuess("sunny");
+
+        game.startNewRound("story");
+        game.takeGuess("swirl");
+        game.takeGuess("stray");
+        game.takeGuess("saint");
+        game.takeGuess("swing");
+        game.takeGuess("stunt");
+
+        assertEquals(5, game.getLengthWord());
     }
 
 

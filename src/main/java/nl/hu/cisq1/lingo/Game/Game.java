@@ -55,6 +55,7 @@ public class Game {
                 changeWordLength();
             } else if(round.getState() == RoundState.LOST){
                 gState = GameState.LOST;
+                this.setLengthWord(5);
             }
         }
     }
