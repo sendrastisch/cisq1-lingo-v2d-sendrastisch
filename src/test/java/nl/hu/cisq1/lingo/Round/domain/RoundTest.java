@@ -1,6 +1,8 @@
 package nl.hu.cisq1.lingo.Round.domain;
 
 import nl.hu.cisq1.lingo.Round.RoundState.RoundState;
+import nl.hu.cisq1.lingo.Round.exception.RoundLostException;
+import nl.hu.cisq1.lingo.Round.exception.RoundWonException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +19,15 @@ class RoundTest {
         assertEquals(RoundState.WON, round.getState());
     }
 
+    @DisplayName("Will pass if the state is playing when the word is not guessed correctly yet and the player has tries left.")
+    @Test
+    void playRoundAndCheckPlayingState() {
+        Round round = new Round("swift");
+        round.takeGuess("swikt");
+
+        assertEquals(RoundState.PLAYING, round.getState());
+    }
+
     @DisplayName("Will pass if the state is lost after 5 guesses.")
     @Test
     void playRoundAndGuessTooManyTimes(){
@@ -30,5 +41,39 @@ class RoundTest {
         assertEquals(RoundState.LOST, round.getState());
     }
 
+    @DisplayName("Will pass if the method throws a roundlostexception after trying to guess a sixth time")
+    @Test
+    void guessSixTimesAndGetException(){
+        assertThrows(RoundLostException.class, () -> {
+            Round round = new Round("swift");
+            round.takeGuess("lunch");
+            round.takeGuess("juicy");
+            round.takeGuess("start");
+            round.takeGuess("blood");
+            round.takeGuess("lover");
+            round.takeGuess("swikt");
+        });
+    }
 
+    @DisplayName("Will pass if the method throws a roundwonexception after trying to guess another time after winning")
+    @Test
+    void winAndTryToGuessAgain(){
+        assertThrows(RoundWonException.class, () -> {
+            Round round = new Round("swift");
+            round.takeGuess("lunch");
+            round.takeGuess("juicy");
+            round.takeGuess("swift");
+            round.takeGuess("lives");
+        });
+    }
+
+    @DisplayName("Will pass if the method gives back a correct feedbacklist after guessing.")
+    @Test
+    void TestGetFeedback(){
+        Round round = new Round("swift");
+        round.takeGuess("store");
+        round.takeGuess("sting");
+
+        assertEquals("[Feedback{attempt='store', marks=[CORRECT, PRESENT, ABSENT, ABSENT, ABSENT]}, Feedback{attempt='sting', marks=[CORRECT, PRESENT, CORRECT, ABSENT, ABSENT]}]", round.getFeedbackList().toString());
+    }
 }

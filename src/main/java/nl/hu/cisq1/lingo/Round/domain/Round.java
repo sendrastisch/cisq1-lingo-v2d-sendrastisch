@@ -42,7 +42,4 @@ public class Round {
         return feedbackList;
     }
 
-    public Hint getHint() {
-        return hint;
-    }
 }
