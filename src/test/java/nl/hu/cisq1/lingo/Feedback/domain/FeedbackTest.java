@@ -103,7 +103,44 @@ class FeedbackTest {
         assertEquals(expectedMarks, feedback.getMarks());
     }
 
+    @Test
+    @DisplayName("Test will pass if the hint generator creates the hint correctly with the previous hint and a new attempt.")
+    void testGenerateHint(){
+        //Arrange
+        Hint hint = new Hint("tears");
+        String attempt = "times";
+        Feedback feedback = new Feedback(attempt);
 
+        //Act
+        feedback.createListMarks("tears");
 
+        //Assert
+        assertEquals("t...s", feedback.generateHint(hint, attempt).toString());
+    }
 
+    @Test
+    @DisplayName("Test will pass if the compared objects are equal")
+    void testEqualsMethod(){
+        Feedback feedback = new Feedback("woman");
+        Feedback feedback2 = new Feedback("woman");
+
+        assertTrue(feedback.equals(feedback2));
+    }
+
+    @Test
+    @DisplayName("Test will pass if the compared objects are not equal")
+    void testEqualsMethodFalse(){
+        Feedback feedback = new Feedback("woman");
+        Feedback feedback2 = new Feedback("timid");
+
+        assertFalse(feedback.equals(feedback2));
+    }
+
+    @Test
+    @DisplayName("Test will pass if the string is formed correctly")
+    void testToStringMethod(){
+        Feedback feedback = new Feedback("woman");
+
+        assertEquals("Feedback{attempt='woman', marks=null}", feedback.toString());
+    }
 }
