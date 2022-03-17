@@ -44,6 +44,11 @@ public class Game {
     }
 
     public void takeGuess(String guess){
+
+        if(rounds.size() == 0){
+         throw new RoundIsNotPlaying("There is no round that has been started");
+        }
+
         Round round = rounds.get(rounds.size()-1);
 
         if(round.getState() != RoundState.PLAYING){

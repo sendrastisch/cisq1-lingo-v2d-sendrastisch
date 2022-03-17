@@ -15,9 +15,20 @@ class GameTest {
         assertThrows(RoundCannotBeStartedException.class, () -> {
            Game game = new Game();
 
-           game.startNewRound("romeo");
-           game.takeGuess("juliet");
-           game.startNewRound("story");
+            game.startNewRound("romeo");
+            game.takeGuess("juliet");
+            game.startNewRound("story");
+
+        });
+    }
+
+    @DisplayName("Will pass if the user cannot take a guess when a round is not started")
+    @Test
+    void CannotTakeGuessIfRoundNotStarted(){
+        assertThrows(RoundIsNotPlaying.class, () -> {
+            Game game = new Game();
+
+            game.takeGuess("never");
         });
     }
 
