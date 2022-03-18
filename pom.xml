@@ -84,8 +84,8 @@
                 <configuration>
                     <jvmArgs>
                         <jvmArg>-Dspring.profiles.active=ci</jvmArg>
-                        <mutationThreshold>90</mutationThreshold>
                     </jvmArgs>
+                    <mutationThreshold>90</mutationThreshold>
                 </configuration>
 
                 <dependencies>
@@ -111,6 +111,11 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+
+                            <excludes>
+                                <exclude>**/LingoApplication.*</exclude>
+                            </excludes>
+
                             <rules>
                                 <rule>
                                     <element>BUNDLE</element>
