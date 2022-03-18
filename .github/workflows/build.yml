@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+          name: ${{ env.REPOSITORY_NAME }}-reports
           path: |
             target/site/jacoco/
             target/pit-reports/
