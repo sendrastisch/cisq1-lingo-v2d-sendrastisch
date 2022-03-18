@@ -49,8 +49,6 @@ public class Hint {
         return hint;
     }
 
-
-
     @Override
     public String toString() {
         return hint;

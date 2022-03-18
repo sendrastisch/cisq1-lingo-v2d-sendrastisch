@@ -23,12 +23,12 @@ public class Feedback {
         }
     }
 
-    public String getAttempt() {
-        return attempt;
-    }
-
     public Feedback(String atmt){
         attempt = atmt;
+    }
+
+    public String getAttempt() {
+        return attempt;
     }
 
     public void setMarks(List<Mark> marks) {
