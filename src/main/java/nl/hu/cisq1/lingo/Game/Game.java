@@ -5,14 +5,25 @@ import nl.hu.cisq1.lingo.Game.exception.RoundCannotBeStartedException;
 import nl.hu.cisq1.lingo.Game.exception.RoundIsNotPlaying;
 import nl.hu.cisq1.lingo.Round.RoundState.RoundState;
 import nl.hu.cisq1.lingo.Round.domain.Round;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Game {
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Enumerated(EnumType.STRING)
     private GameState gState = GameState.WAITING_FOR_ROUND;
     private int lengthWord = 5;
     private int score;
+
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Round> rounds = new ArrayList<>();
 
     public Game() {
