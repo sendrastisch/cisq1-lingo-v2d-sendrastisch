@@ -2,10 +2,23 @@ package nl.hu.cisq1.lingo.Hint.domain;
 
 import nl.hu.cisq1.lingo.Mark.Mark;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class Hint {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String hint;
+
+    public Hint() {
+
+    }
 
     //Will be used to show first letter
     public Hint(String wordToGuess){
@@ -53,4 +66,5 @@ public class Hint {
     public String toString() {
         return hint;
     }
+
 }

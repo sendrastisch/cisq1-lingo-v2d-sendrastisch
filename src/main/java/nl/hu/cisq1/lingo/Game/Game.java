@@ -24,6 +24,7 @@ public class Game {
     private int score;
 
     @OneToMany
+    @JoinColumn
     @Cascade(CascadeType.ALL)
     private List<Round> rounds = new ArrayList<>();
 

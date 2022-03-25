@@ -8,10 +8,7 @@ import nl.hu.cisq1.lingo.Round.RoundState.RoundState;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +21,11 @@ public class Round {
     private String wordToGuess;
 
     @OneToMany
+    @JoinColumn
     @Cascade(CascadeType.ALL)
     private List<Feedback> feedbackList = new ArrayList<>();
 
+    @OneToOne
     private Hint hint;
 
     public Round(){

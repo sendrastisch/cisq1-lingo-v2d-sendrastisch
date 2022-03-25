@@ -4,15 +4,30 @@ import nl.hu.cisq1.lingo.Hint.domain.Hint;
 import nl.hu.cisq1.lingo.Mark.Mark;
 import nl.hu.cisq1.lingo.Feedback.domain.exception.InvalidFeedbackException;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Entity
 public class Feedback {
+    @Id
+    @GeneratedValue
+    private long id;
+
     private String attempt;
+
+    @ElementCollection
     private List<Mark> marks;
+
+    public Feedback(){
+
+    }
 
     public Feedback(String atmt, List<Mark> mrs ){
         attempt = atmt;
