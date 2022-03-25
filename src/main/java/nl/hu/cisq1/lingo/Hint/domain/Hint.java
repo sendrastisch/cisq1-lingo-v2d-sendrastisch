@@ -38,7 +38,7 @@ public class Hint {
         //This is the list of chars of the previous hint.
         char[] splitHint = lastHintString.toCharArray();
 
-        //Loop through list of marks and check whether its correct. If its not correct, it'll add a dot to the hint.
+        //Loop through list of marks and check whether it's correct. If its not correct, it'll add a dot to the hint.
         for(Mark m: marks){
             indexMark +=1;
             if(m == Mark.CORRECT){
