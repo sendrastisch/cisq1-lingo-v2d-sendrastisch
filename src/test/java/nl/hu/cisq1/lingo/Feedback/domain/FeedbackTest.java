@@ -84,7 +84,7 @@ class FeedbackTest {
                 Arguments.of(new Feedback("juicy"), lunch, new ArrayList<>(List.of(new Mark[]{Mark.ABSENT, Mark.CORRECT, Mark.ABSENT, Mark.CORRECT, Mark.ABSENT}))),
                 Arguments.of(new Feedback("fully"), lunch, new ArrayList<>(List.of(new Mark[]{Mark.ABSENT, Mark.CORRECT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT}))),
                 Arguments.of(new Feedback("blank"), lunch, new ArrayList<>(List.of(new Mark[]{Mark.ABSENT, Mark.PRESENT, Mark.ABSENT, Mark.PRESENT, Mark.ABSENT}))),
-                Arguments.of(new Feedback("white"), lunch, new ArrayList<>(List.of(new Mark[]{Mark.ABSENT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT}))),
+                Arguments.of(new Feedback("annoy"), lunch, new ArrayList<>(List.of(new Mark[]{Mark.ABSENT, Mark.ABSENT, Mark.CORRECT, Mark.ABSENT, Mark.ABSENT}))),
                 Arguments.of(new Feedback("animal"), willow, new ArrayList<>(List.of(new Mark[]{Mark.ABSENT, Mark.ABSENT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT, Mark.PRESENT}))),
                 Arguments.of(new Feedback("window"), willow, new ArrayList<>(List.of(new Mark[]{Mark.CORRECT, Mark.CORRECT, Mark.ABSENT, Mark.ABSENT, Mark.CORRECT, Mark.CORRECT}))),
                 Arguments.of(new Feedback("global"), willow, new ArrayList<>(List.of(new Mark[]{Mark.ABSENT, Mark.PRESENT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT, Mark.PRESENT}))),

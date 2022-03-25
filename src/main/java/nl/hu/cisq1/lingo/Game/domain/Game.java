@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.Game;
+package nl.hu.cisq1.lingo.Game.domain;
 
 import nl.hu.cisq1.lingo.Game.GameState.GameState;
 import nl.hu.cisq1.lingo.Game.exception.RoundCannotBeStartedException;
