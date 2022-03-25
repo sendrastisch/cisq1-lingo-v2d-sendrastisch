@@ -6,6 +6,7 @@ import nl.hu.cisq1.lingo.Game.exception.RoundIsNotPlaying;
 import nl.hu.cisq1.lingo.Round.RoundState.RoundState;
 import nl.hu.cisq1.lingo.Round.domain.Round;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Game {
     private int score;
 
     @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Cascade(CascadeType.ALL)
     private List<Round> rounds = new ArrayList<>();
 
     public Game() {
