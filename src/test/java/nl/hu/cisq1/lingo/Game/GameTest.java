@@ -1,8 +1,8 @@
 package nl.hu.cisq1.lingo.Game;
 
 import nl.hu.cisq1.lingo.Game.domain.Game;
-import nl.hu.cisq1.lingo.Game.exception.RoundCannotBeStartedException;
-import nl.hu.cisq1.lingo.Game.exception.RoundIsNotPlaying;
+import nl.hu.cisq1.lingo.Game.domain.exception.RoundCannotBeStartedException;
+import nl.hu.cisq1.lingo.Game.domain.exception.RoundIsNotPlaying;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

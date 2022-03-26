@@ -55,15 +55,11 @@ public class Feedback {
     }
 
     public boolean isWordGuessed(){
-        boolean guessed = false;
+        boolean guessed = true;
 
         for (Mark m: marks){
-            if(m == Mark.ABSENT | m == Mark.INVALID | m == Mark.PRESENT){
+            if(m != Mark.CORRECT){
                 guessed = false;
-                break;
-            }
-            else{
-                guessed = true;
             }
         }
         return guessed;
