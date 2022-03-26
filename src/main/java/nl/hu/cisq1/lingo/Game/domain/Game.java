@@ -3,6 +3,7 @@ package nl.hu.cisq1.lingo.Game.domain;
 import nl.hu.cisq1.lingo.Game.domain.GameState.GameState;
 import nl.hu.cisq1.lingo.Game.domain.exception.RoundCannotBeStartedException;
 import nl.hu.cisq1.lingo.Game.domain.exception.RoundIsNotPlaying;
+import nl.hu.cisq1.lingo.Progress.domain.ProgressDto;
 import nl.hu.cisq1.lingo.Round.RoundState.RoundState;
 import nl.hu.cisq1.lingo.Round.domain.Round;
 import org.hibernate.annotations.Cascade;
@@ -30,6 +31,12 @@ public class Game {
 
     public Game() {
 
+    }
+
+    public ProgressDto getProgress(){
+        ProgressDto progressDto = new ProgressDto(this.id, ((rounds.get(rounds.size() - 1)).getId()), this.score, this.gState, this.lengthWord, rounds.get(rounds.size()-1).getFeedbackList(), rounds.get(rounds.size()-1).getHint());
+
+        return progressDto;
     }
 
     public int getScore() {
