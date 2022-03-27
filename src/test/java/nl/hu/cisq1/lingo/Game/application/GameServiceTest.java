@@ -63,8 +63,6 @@ class GameServiceTest {
 
         ProgressDto progressDto1 = gameService.startNewRound(0L);
 
-        System.out.println(progressDto1);
-
         assertEquals(6, progressDto1.getLengthWord());
     }
 }
