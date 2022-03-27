@@ -29,7 +29,7 @@ public class GameService {
         return game.getProgress();
     }
 
-    public ProgressDto takeGuess(Long gameId, String guess){
+    public ProgressDto takeGuess(long gameId, String guess){
         Game game = gameRepository.getById(gameId);
 
         game.takeGuess(guess);
@@ -37,6 +37,4 @@ public class GameService {
 
         return game.getProgress();
     }
-
-
 }
