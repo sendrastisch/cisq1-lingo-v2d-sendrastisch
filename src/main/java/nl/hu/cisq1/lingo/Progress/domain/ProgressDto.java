@@ -34,8 +34,7 @@ public class ProgressDto {
         return gState;
     }
 
-    public long getGameId() {
-        return gameId;
+    public int getLengthWord() {
+        return lengthWord;
     }
-
 }

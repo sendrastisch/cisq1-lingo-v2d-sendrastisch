@@ -39,6 +39,10 @@ public class Game {
         return progressDto;
     }
 
+    public List<Round> getRounds() {
+        return rounds;
+    }
+
     public long getId(){return id;}
 
     public int getScore() {
@@ -62,7 +66,6 @@ public class Game {
         gState = GameState.PLAYING;
         Round round = new Round(wordToGuess);
         rounds.add(round);
-
     }
 
     public void takeGuess(String guess){

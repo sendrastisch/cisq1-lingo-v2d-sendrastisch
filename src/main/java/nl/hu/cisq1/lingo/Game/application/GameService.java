@@ -30,11 +30,23 @@ public class GameService {
     }
 
     public ProgressDto takeGuess(long gameId, String guess){
-        Game game = gameRepository.getById(gameId);
+        Game game = gameRepository.findById(gameId).orElseThrow();
 
         game.takeGuess(guess);
         gameRepository.save(game);
 
         return game.getProgress();
     }
+
+    public ProgressDto startNewRound(long gameId){
+        Game game = gameRepository.findById(gameId).orElseThrow();
+        String nextWordToGuess = this.wordService.provideRandomWord(game.getLengthWord());
+
+        game.startNewRound(nextWordToGuess);
+        gameRepository.save(game);
+
+        return game.getProgress();
+    }
+
+
 }
