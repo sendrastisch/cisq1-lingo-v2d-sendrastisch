@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 public class Game {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Enumerated(EnumType.STRING)
@@ -38,6 +38,8 @@ public class Game {
 
         return progressDto;
     }
+
+    public long getId(){return id;}
 
     public int getScore() {
         return score;

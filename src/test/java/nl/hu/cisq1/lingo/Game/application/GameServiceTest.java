@@ -18,13 +18,29 @@ class GameServiceTest {
     void startNewGameTest(){
         WordService wordService = mock(WordService.class);
         when(wordService.provideRandomWord(5)).thenReturn("groep");
-
         GameRepository repository = mock(GameRepository.class);
-
         GameService gameService = new GameService(wordService, repository);
+
         ProgressDto progressDto = gameService.startNewGame();
 
         assertEquals("g....", progressDto.getCurrentHint().getHint());
         assertEquals(GameState.PLAYING, progressDto.getgState());
+    }
+
+    @Test
+    @DisplayName("Taking a guess gives a correct hint back")
+    void takeGuess(){
+        WordService wordService = mock(WordService.class);
+        when(wordService.provideRandomWord(5)).thenReturn("groep");
+        GameRepository repository = mock(GameRepository.class);
+        GameService gameService = new GameService(wordService, repository);
+        Game game = new Game();
+
+        game.startNewRound(wordService.provideRandomWord(5));
+        when(repository.getById(any())).thenReturn(game);
+
+        ProgressDto progressDto1 = gameService.takeGuess(0L, "groen");
+
+        assertEquals("groe.", progressDto1.getCurrentHint().getHint());
     }
 }
