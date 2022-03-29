@@ -1,5 +1,6 @@
 package nl.hu.cisq1.lingo.Feedback.domain;
 
+import nl.hu.cisq1.lingo.FeedbackDto.FeedbackDto;
 import nl.hu.cisq1.lingo.Hint.domain.Hint;
 import nl.hu.cisq1.lingo.Mark.Mark;
 import nl.hu.cisq1.lingo.Feedback.domain.exception.InvalidFeedbackException;
@@ -40,6 +41,10 @@ public class Feedback {
 
     public Feedback(String atmt){
         attempt = atmt;
+    }
+
+    public FeedbackDto getFeedbackDto(){
+        return new FeedbackDto(this.id, this.attempt, this.getMarks());
     }
 
     public String getAttempt() {
