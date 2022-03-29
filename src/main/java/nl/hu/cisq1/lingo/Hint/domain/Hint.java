@@ -1,5 +1,6 @@
 package nl.hu.cisq1.lingo.Hint.domain;
 
+import nl.hu.cisq1.lingo.HintDto.HintDto;
 import nl.hu.cisq1.lingo.Mark.Mark;
 
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class Hint {
         StringBuilder hintPuzzle = new StringBuilder();
 
         //This is the string of the last hint
-        String lastHintString = previousHint.getHint();
+        String lastHintString = previousHint.hint;
 
         //This is the list of chars of the previous hint.
         char[] splitHint = lastHintString.toCharArray();
