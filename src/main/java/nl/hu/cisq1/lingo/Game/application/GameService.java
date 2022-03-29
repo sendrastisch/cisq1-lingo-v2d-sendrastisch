@@ -14,15 +14,15 @@ import java.util.List;
 @Service
 @Transactional
 public class GameService {
-    private WordService wordService;
-    private GameRepository gameRepository;
+    private final WordService wordService;
+    private final GameRepository gameRepository;
 
     public GameService(WordService wordService, GameRepository gameRepository) {
         this.wordService = wordService;
         this.gameRepository = gameRepository;
     }
 
-    public ProgressDto startNewGame(){
+    public ProgressDto startNewGame() {
         String wordToGuess = this.wordService.provideRandomWord(5);
 
         Game game = new Game();
@@ -32,7 +32,7 @@ public class GameService {
         return game.getProgress();
     }
 
-    public ProgressDto takeGuess(long gameId, String guess){
+    public ProgressDto takeGuess(long gameId, String guess) {
         Game game = gameRepository.findById(gameId).orElseThrow();
 
         game.takeGuess(guess);
@@ -41,7 +41,7 @@ public class GameService {
         return game.getProgress();
     }
 
-    public ProgressDto startNewRound(long gameId){
+    public ProgressDto startNewRound(long gameId) {
         Game game = gameRepository.findById(gameId).orElseThrow();
         String nextWordToGuess = this.wordService.provideRandomWord(game.getLengthWord());
 
@@ -55,18 +55,20 @@ public class GameService {
         List<Game> games = gameRepository.findAll();
         List<ProgressDto> dto = new ArrayList<>();
 
-        if(games.isEmpty()){
+        if (games.isEmpty()) {
             throw new NoGamesFoundException("No games are found.");
-        } else{
-            for(Game g: games){
+        } else {
+            for (Game g : games) {
                 dto.add(g.getProgress());
             }
         }
         return dto;
     }
 
-    public ProgressDto findGameById(long id){
-        Game game = gameRepository.findById(id).orElseThrow(()-> new NoGamesFoundException("No game is found."));
+    //TODO: make test for findGameById
+    // TODO: 3/29/2022  
+    public ProgressDto findGameById(long id) {
+        Game game = gameRepository.findById(id).orElseThrow(() -> new NoGamesFoundException("No game is found."));
 
         return game.getProgress();
     }

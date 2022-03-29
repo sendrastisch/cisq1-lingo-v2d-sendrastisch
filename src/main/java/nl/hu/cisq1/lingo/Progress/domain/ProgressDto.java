@@ -1,9 +1,7 @@
 package nl.hu.cisq1.lingo.Progress.domain;
 
-import nl.hu.cisq1.lingo.Feedback.domain.Feedback;
 import nl.hu.cisq1.lingo.FeedbackDto.FeedbackDto;
 import nl.hu.cisq1.lingo.Game.domain.GameState.GameState;
-import nl.hu.cisq1.lingo.Hint.domain.Hint;
 import nl.hu.cisq1.lingo.HintDto.HintDto;
 
 import java.util.ArrayList;
@@ -16,9 +14,9 @@ public class ProgressDto {
     public GameState gState;
     public int lengthWord;
     public List<FeedbackDto> feedbackHistory = new ArrayList<>();
-    public Hint currentHint;
+    public HintDto currentHint;
 
-    public ProgressDto(long gameId, long roundNumber, int score, GameState gState, int lengthWord, List<FeedbackDto> feedbackHistory, Hint currentHint) {
+    public ProgressDto(long gameId, long roundNumber, int score, GameState gState, int lengthWord, List<FeedbackDto> feedbackHistory, HintDto currentHint) {
         this.gameId = gameId;
         this.roundNumber = roundNumber;
         this.score = score;
@@ -28,6 +26,8 @@ public class ProgressDto {
         this.currentHint = currentHint;
     }
 
+    //TODO: weghalen na klaar
+    // TODO: 3/29/2022
     @Override
     public String toString() {
         return "ProgressDto{" +

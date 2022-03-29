@@ -22,12 +22,12 @@ public class Hint {
     }
 
     //Will be used to show first letter
-    public Hint(String wordToGuess){
-        this.hint = wordToGuess.charAt(0) + ".".repeat(wordToGuess.length()-1);
+    public Hint(String wordToGuess) {
+        this.hint = wordToGuess.charAt(0) + ".".repeat(wordToGuess.length() - 1);
     }
 
     //will create new hint based on previous hint and the existing list of marks.
-    public Hint(Hint previousHint, List<Mark> marks, String attempt){
+    public Hint(Hint previousHint, List<Mark> marks, String attempt) {
 
         int indexMark = -1;
         //This is where I create the hint String
@@ -40,26 +40,30 @@ public class Hint {
         char[] splitHint = lastHintString.toCharArray();
 
         //Loop through list of marks and check whether it's correct. If its not correct, it'll add a dot to the hint.
-        for(Mark m: marks){
-            indexMark +=1;
-            if(m == Mark.CORRECT){
+        for (Mark m : marks) {
+            indexMark += 1;
+            if (m == Mark.CORRECT) {
                 char a = attempt.charAt(indexMark);
                 hintPuzzle.append(a);
-            } else{
+            } else {
                 hintPuzzle.append(".");
             }
         }
 
         //This loop will combine the hints given from the guess with the previous hint.
-        for(int i = 0; i < splitHint.length; i++){
-            if(splitHint[i] != '.'){
-                hintPuzzle.replace(i, i+1 , String.valueOf(splitHint[i]));
+        for (int i = 0; i < splitHint.length; i++) {
+            if (splitHint[i] != '.') {
+                hintPuzzle.replace(i, i + 1, String.valueOf(splitHint[i]));
             }
         }
-       hint = hintPuzzle.toString();
+        hint = hintPuzzle.toString();
     }
 
-    public String getHint() {
+    public HintDto getHint() {
+        return new HintDto(this.hint);
+    }
+
+    public String getHintAttribute() {
         return hint;
     }
 

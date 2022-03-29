@@ -1,9 +1,9 @@
 package nl.hu.cisq1.lingo.Feedback.domain;
 
+import nl.hu.cisq1.lingo.Feedback.domain.exception.InvalidFeedbackException;
 import nl.hu.cisq1.lingo.FeedbackDto.FeedbackDto;
 import nl.hu.cisq1.lingo.Hint.domain.Hint;
 import nl.hu.cisq1.lingo.Mark.Mark;
-import nl.hu.cisq1.lingo.Feedback.domain.exception.InvalidFeedbackException;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -26,24 +26,24 @@ public class Feedback {
     @ElementCollection
     private List<Mark> marks;
 
-    public Feedback(){
+    public Feedback() {
 
     }
 
-    public Feedback(String atmt, List<Mark> mrs ){
+    public Feedback(String atmt, List<Mark> mrs) {
         attempt = atmt;
         marks = mrs;
 
-        if(atmt.length() != mrs.size()){
+        if (atmt.length() != mrs.size()) {
             throw new InvalidFeedbackException();
         }
     }
 
-    public Feedback(String atmt){
+    public Feedback(String atmt) {
         attempt = atmt;
     }
 
-    public FeedbackDto getFeedbackDto(){
+    public FeedbackDto getFeedbackDto() {
         return new FeedbackDto(this.id, this.attempt, this.getMarks());
     }
 
@@ -51,30 +51,30 @@ public class Feedback {
         return attempt;
     }
 
-    public void setMarks(List<Mark> marks) {
-        this.marks = marks;
-    }
-
     public List<Mark> getMarks() {
         return marks;
     }
 
-    public boolean isWordGuessed(){
+    public void setMarks(List<Mark> marks) {
+        this.marks = marks;
+    }
+
+    public boolean isWordGuessed() {
         boolean guessed = true;
 
-        for (Mark m: marks){
-            if(m != Mark.CORRECT){
+        for (Mark m : marks) {
+            if (m != Mark.CORRECT) {
                 guessed = false;
             }
         }
         return guessed;
     }
 
-    public boolean isWordInvalid(){
+    public boolean isWordInvalid() {
         boolean invalid = false;
 
-        for (Mark m: marks){
-            if(m == Mark.INVALID){
+        for (Mark m : marks) {
+            if (m == Mark.INVALID) {
                 invalid = true;
                 break;
             }
@@ -83,16 +83,14 @@ public class Feedback {
     }
 
     //This function creates a list of marks for a word
-    public void createListMarks(String wordToGuess){
+    public void createListMarks(String wordToGuess) {
         List<Mark> list = new ArrayList<>();
-        
-        if(wordToGuess.equals(this.attempt)){
+
+        if (wordToGuess.equals(this.attempt)) {
             list = Stream.generate(() -> Mark.CORRECT).limit(this.attempt.length()).collect(Collectors.toList());
-        }
-        else if(wordToGuess.length() != this.attempt.length()){
+        } else if (wordToGuess.length() != this.attempt.length()) {
             list = Stream.generate(() -> Mark.INVALID).limit(wordToGuess.length()).collect(Collectors.toList());
-        }
-        else{
+        } else {
             //This is the word to guess split into an array of chars
             char[] splitwordToGuess = wordToGuess.toCharArray();
             List<Character> listWordToGuess = wordToGuess.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
@@ -103,20 +101,19 @@ public class Feedback {
             List<Character> listMaybePresent = new ArrayList<>(listWordToGuess);
 
             //if the character is correct and at the right index it gets the mark correct
-            for(int i = 0; i < splitwordToGuess.length; i++){
-                if(splitwordToGuess[i] == splitAttempt[i]){
+            for (int i = 0; i < splitwordToGuess.length; i++) {
+                if (splitwordToGuess[i] == splitAttempt[i]) {
                     list.add(Mark.CORRECT);
                     listMaybePresent.remove((Character) splitAttempt[i]);
-                }
-                else{
+                } else {
                     list.add(Mark.ABSENT);
                 }
             }
 
             //loop through the remainder of the characters that werent correct and see which mark they should get
-            for(int i = 0; i < listAttempt.size(); i++){
-                if(list.get(i) == Mark.ABSENT){
-                    if(listMaybePresent.contains(listAttempt.get(i))){
+            for (int i = 0; i < listAttempt.size(); i++) {
+                if (list.get(i) == Mark.ABSENT) {
+                    if (listMaybePresent.contains(listAttempt.get(i))) {
                         list.set(i, Mark.PRESENT);
                         listMaybePresent.remove(listAttempt.get(i));
                     }
@@ -126,7 +123,7 @@ public class Feedback {
         this.setMarks(list);
     }
 
-    public Hint generateHint(Hint previousHint, String attempt){
+    public Hint generateHint(Hint previousHint, String attempt) {
         return new Hint(previousHint, marks, attempt);
     }
 

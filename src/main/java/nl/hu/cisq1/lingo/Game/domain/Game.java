@@ -33,33 +33,27 @@ public class Game {
 
     }
 
-    public ProgressDto getProgress(){
-        ProgressDto progressDto = new ProgressDto(this.id, ((rounds.get(rounds.size() - 1)).getId()), this.score, this.gState, this.lengthWord, rounds.get(rounds.size()-1).getFeedbackList(), rounds.get(rounds.size()-1).getHint());
+    public ProgressDto getProgress() {
+        ProgressDto progressDto = new ProgressDto(this.id, rounds.size(), this.score, this.gState, this.lengthWord, rounds.get(rounds.size() - 1).getFeedbackList(), rounds.get(rounds.size() - 1).getHint());
 
         return progressDto;
     }
 
-    public List<Round> getRounds() {
-        return rounds;
-    }
-
-    public long getId(){return id;}
-
     public int getScore() {
         return score;
-    }
-
-    public void setLengthWord(int lengthWord) {
-        this.lengthWord = lengthWord;
     }
 
     public int getLengthWord() {
         return lengthWord;
     }
 
-    public void startNewRound(String wordToGuess){
+    public void setLengthWord(int lengthWord) {
+        this.lengthWord = lengthWord;
+    }
 
-        if(rounds.size() != 0 && rounds.get(rounds.size()-1).getState() != RoundState.WON ){
+    public void startNewRound(String wordToGuess) {
+
+        if (rounds.size() != 0 && rounds.get(rounds.size() - 1).getState() != RoundState.WON) {
             throw new RoundCannotBeStartedException("The round cannot be started.");
         }
 
@@ -68,29 +62,29 @@ public class Game {
         rounds.add(round);
     }
 
-    public void takeGuess(String guess){
+    public void takeGuess(String guess) {
 
-        if(rounds.size() == 0){
-         throw new RoundIsNotPlaying("There is no round that has been started");
+        if (rounds.size() == 0) {
+            throw new RoundIsNotPlaying("There is no round that has been started");
         }
 
-        Round round = rounds.get(rounds.size()-1);
+        Round round = rounds.get(rounds.size() - 1);
 
-        if(round.getState() != RoundState.PLAYING){
-            throw new RoundIsNotPlaying("There is no round that has been started");
-        } else{
+        if (round.getState() != RoundState.PLAYING) {
+            throw new RoundIsNotPlaying("There is no round that has been started because the game is over.");
+        } else {
             round.takeGuess(guess);
-            if(round.getState() == RoundState.WON){
+            if (round.getState() == RoundState.WON) {
                 score += 5 * (5 - round.getFeedbackList().size()) + 5;
                 changeWordLength();
-            } else if(round.getState() == RoundState.LOST){
+            } else if (round.getState() == RoundState.LOST) {
                 gState = GameState.LOST;
                 this.setLengthWord(5);
             }
         }
     }
 
-    public void changeWordLength(){
+    public void changeWordLength() {
         switch (lengthWord) {
             case 5:
                 setLengthWord(6);
@@ -101,7 +95,7 @@ public class Game {
             case 7:
                 setLengthWord(5);
                 break;
-            default :
+            default:
                 lengthWord = 5;
         }
     }

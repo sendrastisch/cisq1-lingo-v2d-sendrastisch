@@ -33,7 +33,7 @@ class HintTest {
     void constructorGivesCorrectOutput(String guess, String expectedHint){
         Hint hint = new Hint(guess);
 
-        assertEquals(expectedHint, hint.getHint());
+        assertEquals(expectedHint, hint.getHintAttribute());
     }
 
     @MethodSource("provideArgumentsForNewHintConstructorTest")
@@ -42,7 +42,7 @@ class HintTest {
     void constructorGivesCorrectNewHint(Hint hint, List<Mark> marks, String attempt, String expectedResult){
         Hint newHint = new Hint(hint, marks, attempt);
 
-        assertEquals(expectedResult, newHint.getHint());
+        assertEquals(expectedResult, newHint.getHintAttribute());
 
     }
 

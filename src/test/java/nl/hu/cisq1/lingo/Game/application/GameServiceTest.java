@@ -28,7 +28,7 @@ class GameServiceTest {
 
         ProgressDto progressDto = gameService.startNewGame();
 
-        assertEquals("g....", progressDto.currentHint.getHint());
+        assertEquals("g....", progressDto.currentHint.hint);
         assertEquals(GameState.PLAYING, progressDto.gState);
     }
 
@@ -46,7 +46,7 @@ class GameServiceTest {
 
         ProgressDto progressDto1 = gameService.takeGuess(0L, "groen");
 
-        assertEquals("groe.", progressDto1.currentHint.getHint());
+        assertEquals("groe.", progressDto1.currentHint.hint);
     }
 
     @Test

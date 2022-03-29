@@ -9,7 +9,7 @@ public class FeedbackDto {
     public String attempt;
     public List<Mark> marks;
 
-    public FeedbackDto(long feedbackId, String attempt, List<Mark> marks){
+    public FeedbackDto(long feedbackId, String attempt, List<Mark> marks) {
         this.feedbackId = feedbackId;
         this.attempt = attempt;
         this.marks = marks;
