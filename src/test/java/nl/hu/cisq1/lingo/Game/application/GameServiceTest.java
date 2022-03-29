@@ -1,5 +1,6 @@
 package nl.hu.cisq1.lingo.Game.application;
 
+import nl.hu.cisq1.lingo.Game.application.exceptions.NoGamesFoundException;
 import nl.hu.cisq1.lingo.Game.data.GameRepository;
 import nl.hu.cisq1.lingo.Game.domain.Game;
 import nl.hu.cisq1.lingo.Game.domain.GameState.GameState;
@@ -8,6 +9,8 @@ import nl.hu.cisq1.lingo.Words.application.WordService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,8 +28,8 @@ class GameServiceTest {
 
         ProgressDto progressDto = gameService.startNewGame();
 
-        assertEquals("g....", progressDto.getCurrentHint().getHint());
-        assertEquals(GameState.PLAYING, progressDto.getgState());
+        assertEquals("g....", progressDto.currentHint.getHint());
+        assertEquals(GameState.PLAYING, progressDto.gState);
     }
 
     @Test
@@ -43,7 +46,7 @@ class GameServiceTest {
 
         ProgressDto progressDto1 = gameService.takeGuess(0L, "groen");
 
-        assertEquals("groe.", progressDto1.getCurrentHint().getHint());
+        assertEquals("groe.", progressDto1.currentHint.getHint());
     }
 
     @Test
@@ -63,6 +66,41 @@ class GameServiceTest {
 
         ProgressDto progressDto1 = gameService.startNewRound(0L);
 
-        assertEquals(6, progressDto1.getLengthWord());
+        assertEquals(6, progressDto1.lengthWord);
     }
+
+    @Test
+    @DisplayName("The find all games method returns a list of DTO's")
+    void findAllGamesTest(){
+        WordService wordService = mock(WordService.class);
+        when(wordService.provideRandomWord(5)).thenReturn("groep");
+        GameRepository repository = mock(GameRepository.class);
+        GameService gameService = new GameService(wordService, repository);
+        Game game = new Game();
+        Game game2 = new Game();
+        List<Game> games = new ArrayList<>();
+
+        game.startNewRound(wordService.provideRandomWord(5));
+        game2.startNewRound(wordService.provideRandomWord(5));
+        games.add(game);
+        games.add(game2);
+
+        when(repository.findAll()).thenReturn(games);
+
+        List<ProgressDto> progressDto = gameService.findAllGames();
+
+        assertEquals(2, progressDto.size());
+    }
+
+    @Test
+    @DisplayName("The find all games method will throw an exception if no games are found.")
+    void testFindAllGamesException(){
+        WordService wordService = mock(WordService.class);
+        GameRepository repository = mock(GameRepository.class);
+
+        GameService gameService = new GameService(wordService, repository);
+
+        assertThrows(NoGamesFoundException.class, gameService::findAllGames);
+    }
+
 }
