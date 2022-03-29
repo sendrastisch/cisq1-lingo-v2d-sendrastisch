@@ -1,6 +1,7 @@
 package nl.hu.cisq1.lingo.Round.domain;
 
 import nl.hu.cisq1.lingo.Feedback.domain.Feedback;
+import nl.hu.cisq1.lingo.FeedbackDto.FeedbackDto;
 import nl.hu.cisq1.lingo.Round.exception.RoundWonException;
 import nl.hu.cisq1.lingo.Hint.domain.Hint;
 import nl.hu.cisq1.lingo.Round.exception.RoundLostException;
@@ -26,6 +27,7 @@ public class Round {
     private List<Feedback> feedbackList = new ArrayList<>();
 
     @OneToOne
+    @Cascade(CascadeType.ALL)
     private Hint hint;
 
     public Round(){
@@ -64,7 +66,11 @@ public class Round {
         }
     }
 
-    public List<Feedback> getFeedbackList() {
-        return feedbackList;
+    public List<FeedbackDto> getFeedbackList() {
+        List<FeedbackDto> feedbackDtos = new ArrayList<>();
+        for (Feedback feedback: feedbackList){
+            feedbackDtos.add(feedback.getFeedbackDto());
+        }
+        return feedbackDtos;
     }
 }
