@@ -1,5 +1,6 @@
 package nl.hu.cisq1.lingo.Game.application;
 
+import nl.hu.cisq1.lingo.Game.application.exceptions.NoGamesFoundException;
 import nl.hu.cisq1.lingo.Game.data.GameRepository;
 import nl.hu.cisq1.lingo.Game.domain.Game;
 import nl.hu.cisq1.lingo.Progress.domain.ProgressDto;
@@ -7,6 +8,8 @@ import nl.hu.cisq1.lingo.Words.application.WordService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -48,5 +51,23 @@ public class GameService {
         return game.getProgress();
     }
 
+    public List<ProgressDto> findAllGames() {
+        List<Game> games = gameRepository.findAll();
+        List<ProgressDto> dto = new ArrayList<>();
 
+        if(games.isEmpty()){
+            throw new NoGamesFoundException("No games are found.");
+        } else{
+            for(Game g: games){
+                dto.add(g.getProgress());
+            }
+        }
+        return dto;
+    }
+
+    public ProgressDto findGameById(long id){
+        Game game = gameRepository.findById(id).orElseThrow(()-> new NoGamesFoundException("No game is found."));
+
+        return game.getProgress();
+    }
 }
