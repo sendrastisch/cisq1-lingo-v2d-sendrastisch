@@ -97,10 +97,27 @@ class GameServiceTest {
     void testFindAllGamesException(){
         WordService wordService = mock(WordService.class);
         GameRepository repository = mock(GameRepository.class);
-
         GameService gameService = new GameService(wordService, repository);
 
         assertThrows(NoGamesFoundException.class, gameService::findAllGames);
+    }
+
+    @Test
+    @DisplayName("The find by id method should return a correct game progress DTO.")
+    void testFindById(){
+        WordService wordService = mock(WordService.class);
+        when(wordService.provideRandomWord(5)).thenReturn("groep");
+        GameRepository repository = mock(GameRepository.class);
+        GameService gameService = new GameService(wordService, repository);
+        Game game = new Game();
+
+        game.startNewRound(wordService.provideRandomWord(5));
+        when(repository.findById(0L)).thenReturn(Optional.of(game));
+        ProgressDto dto = gameService.findGameById(0L);
+
+        assertEquals(0, dto.gameId);
+
+
     }
 
 }
