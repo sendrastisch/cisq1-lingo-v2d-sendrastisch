@@ -33,7 +33,7 @@ public class GameService {
     }
 
     public ProgressDto takeGuess(long gameId, String guess) {
-        Game game = gameRepository.findById(gameId).orElseThrow();
+        Game game = gameRepository.findById(gameId).orElseThrow(() -> new NoGamesFoundException("Wrong id."));
 
         game.takeGuess(guess);
         gameRepository.save(game);

@@ -39,6 +39,10 @@ public class Game {
         return progressDto;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public int getScore() {
         return score;
     }

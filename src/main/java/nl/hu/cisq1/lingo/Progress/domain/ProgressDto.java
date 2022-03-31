@@ -25,4 +25,17 @@ public class ProgressDto {
         this.feedbackHistory = feedbackHistory;
         this.currentHint = currentHint;
     }
+
+    @Override
+    public String toString() {
+        return "ProgressDto{" +
+                "gameId=" + gameId +
+                ", roundNumber=" + roundNumber +
+                ", score=" + score +
+                ", gState=" + gState +
+                ", lengthWord=" + lengthWord +
+                ", feedbackHistory=" + feedbackHistory +
+                ", currentHint=" + currentHint +
+                '}';
+    }
 }
