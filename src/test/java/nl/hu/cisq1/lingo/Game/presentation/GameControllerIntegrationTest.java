@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.hu.cisq1.lingo.Game.application.GameService;
 import nl.hu.cisq1.lingo.Game.data.GameRepository;
 import nl.hu.cisq1.lingo.Game.presentation.dto.GuessDto;
+import nl.hu.cisq1.lingo.Progress.domain.ProgressDto;
 import nl.hu.cisq1.lingo.Words.application.WordService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -79,6 +82,26 @@ class GameControllerIntegrationTest {
         mockMvc.perform(guessRequest)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.feedbackHistory", hasSize(1)));
+    }
+
+    @Test
+    @DisplayName("Starting a round test.")
+    void testWithoutGameStarted() throws Exception {
+        when(wordService.provideRandomWord(5))
+                .thenReturn("groep");
+
+        when(wordService.provideRandomWord(6)).thenReturn("school");
+
+        //game started and won
+        long gameId = gameService.startNewGame().gameId;
+        gameService.takeGuess(gameId, "groep");
+
+        RequestBuilder startRoundRequest = MockMvcRequestBuilders
+                .post("/games/" + gameId);
+
+        mockMvc.perform(startRoundRequest)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.lengthWord", is(6)));
     }
 
 }
