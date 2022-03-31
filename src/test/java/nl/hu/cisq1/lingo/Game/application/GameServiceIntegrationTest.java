@@ -36,7 +36,7 @@ class GameServiceIntegrationTest {
     private static final String RANDOM_WORD_7 = "student";
 
     @Test
-    @DisplayName("Guessing correctly test")
+    @DisplayName("Guessing correctly correctly makes wordlength go to 6")
     void testCorrectGuess(){
         WordService wordService = mock(WordService.class);
         when(wordService.provideRandomWord(5)).thenReturn("groep");
@@ -49,7 +49,7 @@ class GameServiceIntegrationTest {
     }
 
     @Test
-    @DisplayName("Guessing after 5 times makes you lose the game")
+    @DisplayName("Guessing after 5 times throws exception")
     void testTooManyGuesses(){
         WordService wordService = mock(WordService.class);
         when(wordService.provideRandomWord(5)).thenReturn("groep");
