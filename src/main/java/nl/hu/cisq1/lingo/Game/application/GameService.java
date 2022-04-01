@@ -65,8 +65,6 @@ public class GameService {
         return dto;
     }
 
-    //TODO: make test for findGameById
-    // TODO: 3/29/2022  
     public ProgressDto findGameById(long id) {
         Game game = gameRepository.findById(id).orElseThrow(() -> new NoGamesFoundException("No game is found."));
 
