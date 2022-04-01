@@ -42,7 +42,7 @@ public class GameService {
     }
 
     public ProgressDto startNewRound(long gameId) {
-        Game game = gameRepository.findById(gameId).orElseThrow();
+        Game game = gameRepository.findById(gameId).orElseThrow(() -> new NoGamesFoundException("No game found with this ID. "));
         String nextWordToGuess = this.wordService.provideRandomWord(game.getLengthWord());
 
         game.startNewRound(nextWordToGuess);

@@ -104,4 +104,14 @@ class GameControllerIntegrationTest {
                 .andExpect(jsonPath("$.lengthWord", is(6)));
     }
 
+    @Test
+    @DisplayName("Can not start a round without a started game.")
+    void testCannotStartRoundWithoutGame() throws Exception{
+        RequestBuilder startRoundRequest = MockMvcRequestBuilders
+                .post("/games/0");
+
+        mockMvc.perform(startRoundRequest)
+                .andExpect(status().is(404));
+    }
+
 }
