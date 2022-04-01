@@ -86,7 +86,7 @@ class GameControllerIntegrationTest {
 
     @Test
     @DisplayName("Starting a round test.")
-    void testWithoutGameStarted() throws Exception {
+    void testStartANewRoundControllerMethod() throws Exception {
         when(wordService.provideRandomWord(5))
                 .thenReturn("groep");
 
