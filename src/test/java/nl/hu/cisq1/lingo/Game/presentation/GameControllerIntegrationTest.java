@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.hu.cisq1.lingo.Game.application.GameService;
 import nl.hu.cisq1.lingo.Game.data.GameRepository;
 import nl.hu.cisq1.lingo.Game.presentation.dto.GuessDto;
-import nl.hu.cisq1.lingo.Progress.domain.ProgressDto;
 import nl.hu.cisq1.lingo.Words.application.WordService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,8 +18,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -48,7 +45,7 @@ class GameControllerIntegrationTest {
         when(wordService.provideRandomWord(5))
                 .thenReturn("groep");
 
-        RequestBuilder request =  MockMvcRequestBuilders
+        RequestBuilder request = MockMvcRequestBuilders
                 .post("/games");
 
         String expectedHint = "g....";
@@ -106,7 +103,7 @@ class GameControllerIntegrationTest {
 
     @Test
     @DisplayName("Can not start a round without a started game.")
-    void testCannotStartRoundWithoutGame() throws Exception{
+    void testCannotStartRoundWithoutGame() throws Exception {
         RequestBuilder startRoundRequest = MockMvcRequestBuilders
                 .post("/games/0");
 
@@ -116,7 +113,7 @@ class GameControllerIntegrationTest {
 
     @Test
     @DisplayName("Test find game by id")
-    void testGetById() throws Exception{
+    void testGetById() throws Exception {
         when(wordService.provideRandomWord(5))
                 .thenReturn("groep");
 
@@ -131,7 +128,7 @@ class GameControllerIntegrationTest {
 
     @Test
     @DisplayName("Will pass if status is 404 if game is not found.")
-    void testExceptionGetByGames() throws Exception{
+    void testExceptionGetByGames() throws Exception {
         RequestBuilder getGameByIdRequest = MockMvcRequestBuilders
                 .get("/games/0");
 
@@ -141,7 +138,7 @@ class GameControllerIntegrationTest {
 
     @Test
     @DisplayName("Will pass if status is 400 if game is not found (take guess method test)")
-    void testTakeGuessException() throws Exception{
+    void testTakeGuessException() throws Exception {
         RequestBuilder takeGuessRequest = MockMvcRequestBuilders
                 .patch("/games/0");
 
