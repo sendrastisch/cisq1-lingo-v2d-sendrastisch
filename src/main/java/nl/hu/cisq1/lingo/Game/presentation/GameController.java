@@ -21,15 +21,6 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping()
-    public List<ProgressDto> getAllGames() {
-        try {
-            return gameService.findAllGames();
-        } catch (NoGamesFoundException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
-        }
-    }
-
     @GetMapping("/{id}")
     public ProgressDto getGameById(@PathVariable long id) {
         try {
