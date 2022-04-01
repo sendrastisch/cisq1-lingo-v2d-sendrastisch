@@ -116,8 +116,8 @@ class GameServiceTest {
         ProgressDto dto = gameService.findGameById(0L);
 
         assertEquals(0, dto.gameId);
-
-
     }
+
+
 
 }
