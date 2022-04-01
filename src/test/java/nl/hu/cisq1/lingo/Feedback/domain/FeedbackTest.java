@@ -126,12 +126,4 @@ class FeedbackTest {
 
         assertFalse(feedback.equals(feedback2));
     }
-
-    @Test
-    @DisplayName("Test will pass if the string is formed correctly")
-    void testToStringMethod(){
-        Feedback feedback = new Feedback("woman");
-
-        assertEquals("Feedback{attempt='woman', marks=null}", feedback.toString());
-    }
 }
