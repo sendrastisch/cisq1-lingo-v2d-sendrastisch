@@ -114,4 +114,39 @@ class GameControllerIntegrationTest {
                 .andExpect(status().is(404));
     }
 
+    @Test
+    @DisplayName("Test find game by id")
+    void testGetById() throws Exception{
+        when(wordService.provideRandomWord(5))
+                .thenReturn("groep");
+
+        long gameId = gameService.startNewGame().gameId;
+
+        RequestBuilder getGameRequest = MockMvcRequestBuilders
+                .get("/games/" + gameId);
+
+        mockMvc.perform(getGameRequest)
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Will pass if status is 404 if game is not found.")
+    void testExceptionGetByGames() throws Exception{
+        RequestBuilder getGameByIdRequest = MockMvcRequestBuilders
+                .get("/games/0");
+
+        mockMvc.perform(getGameByIdRequest)
+                .andExpect(status().is(404));
+    }
+
+    @Test
+    @DisplayName("Will pass if status is 400 if game is not found (take guess method test)")
+    void testTakeGuessException() throws Exception{
+        RequestBuilder takeGuessRequest = MockMvcRequestBuilders
+                .patch("/games/0");
+
+        mockMvc.perform(takeGuessRequest)
+                .andExpect(status().is(400));
+    }
+
 }
