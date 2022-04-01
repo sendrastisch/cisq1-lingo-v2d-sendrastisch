@@ -82,7 +82,6 @@ public class Feedback {
         return invalid;
     }
 
-    //This function creates a list of marks for a word
     public void createListMarks(String wordToGuess) {
         List<Mark> list = new ArrayList<>();
 
@@ -127,13 +126,13 @@ public class Feedback {
         return new Hint(previousHint, marks, attempt);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Feedback feedback = (Feedback) o;
-        return Objects.equals(attempt, feedback.attempt) && Objects.equals(marks, feedback.marks);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Feedback feedback = (Feedback) o;
+//        return Objects.equals(attempt, feedback.attempt) && Objects.equals(marks, feedback.marks);
+//    }
 
     @Override
     public String toString() {

@@ -119,15 +119,6 @@ class FeedbackTest {
     }
 
     @Test
-    @DisplayName("Test will pass if the compared objects are equal")
-    void testEqualsMethod(){
-        Feedback feedback = new Feedback("woman");
-        Feedback feedback2 = new Feedback("woman");
-
-        assertTrue(feedback.equals(feedback2));
-    }
-
-    @Test
     @DisplayName("Test will pass if the compared objects are not equal")
     void testEqualsMethodFalse(){
         Feedback feedback = new Feedback("woman");
