@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.Progress.domain;
+package nl.hu.cisq1.lingo.Round.domain.domain;
 
 import nl.hu.cisq1.lingo.FeedbackDto.FeedbackDto;
 import nl.hu.cisq1.lingo.Game.domain.GameState.GameState;

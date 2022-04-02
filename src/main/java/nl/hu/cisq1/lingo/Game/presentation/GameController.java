@@ -5,12 +5,10 @@ import nl.hu.cisq1.lingo.Game.application.exceptions.NoGamesFoundException;
 import nl.hu.cisq1.lingo.Game.domain.exception.RoundCannotBeStartedException;
 import nl.hu.cisq1.lingo.Game.domain.exception.RoundIsNotPlaying;
 import nl.hu.cisq1.lingo.Game.presentation.dto.GuessDto;
-import nl.hu.cisq1.lingo.Progress.domain.ProgressDto;
+import nl.hu.cisq1.lingo.Round.domain.domain.ProgressDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/games")

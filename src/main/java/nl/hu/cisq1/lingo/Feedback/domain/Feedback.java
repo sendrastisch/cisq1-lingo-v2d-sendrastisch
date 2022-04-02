@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,10 +44,6 @@ public class Feedback {
 
     public FeedbackDto getFeedbackDto() {
         return new FeedbackDto(this.id, this.attempt, this.getMarks());
-    }
-
-    public String getAttempt() {
-        return attempt;
     }
 
     public List<Mark> getMarks() {

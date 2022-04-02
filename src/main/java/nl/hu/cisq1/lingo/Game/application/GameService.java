@@ -3,7 +3,7 @@ package nl.hu.cisq1.lingo.Game.application;
 import nl.hu.cisq1.lingo.Game.application.exceptions.NoGamesFoundException;
 import nl.hu.cisq1.lingo.Game.data.GameRepository;
 import nl.hu.cisq1.lingo.Game.domain.Game;
-import nl.hu.cisq1.lingo.Progress.domain.ProgressDto;
+import nl.hu.cisq1.lingo.Round.domain.domain.ProgressDto;
 import nl.hu.cisq1.lingo.Words.application.WordService;
 import org.springframework.stereotype.Service;
 

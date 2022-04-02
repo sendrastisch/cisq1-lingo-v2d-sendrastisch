@@ -44,10 +44,6 @@ public class Round {
         return hint.getHint();
     }
 
-    public long getId() {
-        return id;
-    }
-
     public RoundState getState() {
         if (feedbackList.size() == 5) return RoundState.LOST;
         if (feedbackList.size() != 0 && feedbackList.get(feedbackList.size() - 1).isWordGuessed())

@@ -1,9 +1,7 @@
 package nl.hu.cisq1.lingo.Game.application;
 
-import nl.hu.cisq1.lingo.Game.data.GameRepository;
-import nl.hu.cisq1.lingo.Game.domain.GameState.GameState;
 import nl.hu.cisq1.lingo.Game.domain.exception.RoundIsNotPlaying;
-import nl.hu.cisq1.lingo.Progress.domain.ProgressDto;
+import nl.hu.cisq1.lingo.Round.domain.domain.ProgressDto;
 import nl.hu.cisq1.lingo.Words.application.WordService;
 import nl.hu.cisq1.lingo.Words.data.WordRepository;
 import nl.hu.cisq1.lingo.Words.domain.Word;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
