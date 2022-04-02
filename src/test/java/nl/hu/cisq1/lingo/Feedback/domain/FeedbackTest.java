@@ -61,6 +61,7 @@ class FeedbackTest {
         String wordToGuess = "chart";
         String attempt = "chart";
         Feedback feedback = new Feedback(attempt);
+
         feedback.createListMarks(wordToGuess);
 
         assertEquals(List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT), feedback.getMarks());
@@ -72,6 +73,7 @@ class FeedbackTest {
         String wordToGuess = "chart";
         String attempt = "single";
         Feedback feedback = new Feedback(attempt);
+
         feedback.createListMarks(wordToGuess);
 
         assertEquals(List.of(Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID, Mark.INVALID), feedback.getMarks());

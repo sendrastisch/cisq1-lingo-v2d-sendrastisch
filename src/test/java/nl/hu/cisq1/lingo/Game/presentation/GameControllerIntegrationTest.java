@@ -123,7 +123,8 @@ class GameControllerIntegrationTest {
                 .get("/games/" + gameId);
 
         mockMvc.perform(getGameRequest)
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.gameId", is((int) gameId)));
     }
 
     @Test
